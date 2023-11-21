@@ -1,0 +1,219 @@
+@function pxToVw($px) {
+  @return $px/1920 * 100vw;
+}
+
+$vw30: pxToVw(30);
+$vw10: pxToVw(10);
+
+@mixin middle-position() {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+@mixin border1($color) {
+  border: 1px solid $color;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 10px;
+  font-family: "JetBrains Mono", monospace;
+}
+main,
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.login-section {
+  width: pxToVw(450);
+  height: pxToVw(500);
+  @include middle-position();
+  @include border1(#dadce0);
+  border-radius: 10px;
+  padding: pxToVw(45);
+  h1 {
+    background-image: url("../img/logo.svg");
+    width: pxToVw(159);
+    height: pxToVw(42);
+    background-size: cover;
+    margin: auto;
+  }
+  h2 {
+    margin-top: $vw10;
+    text-align: center;
+    font-size: $vw30;
+  }
+  h3 {
+    margin-top: $vw30;
+    font-size: $vw30;
+    text-align: center;
+  }
+  .login-input {
+    box-sizing: border-box;
+    width: calc(100% - 60px);
+    height: pxToVw(60);
+    padding: pxToVw(15);
+    border-radius: $vw10;
+    @include border1(#dadce0);
+    background-color: #e7f0fe;
+    margin: $vw30 30px;
+    text-align: right;
+    font-size: pxToVw(30);
+    &:focus {
+      outline: none;
+    }
+  }
+  button {
+    float: right;
+    position: absolute;
+    bottom: pxToVw(35);
+    right: pxToVw(10);
+    width: pxToVw(80);
+    height: pxToVw(35);
+    transform: translate(-50%, -50%);
+    background-color: #1973e8;
+    border: 0;
+    outline: 0;
+    border-radius: pxToVw(5);
+    color: white;
+    font-size: pxToVw(23);
+    &:hover {
+      background-color: darken($color: #1973e8, $amount: 10);
+    }
+    &:active {
+      background-color: darken($color: #1973e8, $amount: 20);
+    }
+  }
+}
+.memo {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  aside {
+    height: 100%;
+    width: pxToVw(400);
+    box-sizing: border-box;
+    padding: pxToVw(25) pxToVw(75);
+    background-color: #fbfbfb;
+    .memo-logo {
+      width: pxToVw(250);
+      height: pxToVw(66.04);
+      background-image: url(../img/logo.svg);
+      background-size: cover;
+    }
+    .search-bar {
+      box-sizing: border-box;
+      width: pxToVw(250);
+      height: pxToVw(50);
+      margin-top: pxToVw(28.96);
+      border: none;
+      background-color: #d9d9d9;
+      border-radius: pxToVw(10);
+      font-size: pxToVw(30);
+      text-align: left;
+      &::placeholder {
+        text-align: left;
+      }
+      padding: pxToVw(5);
+      &:focus {
+        outline: none;
+      }
+    }
+    .option-div {
+      margin: pxToVw(30) 0;
+      p {
+        font-size: pxToVw(30);
+        text-align: center;
+        margin-top: pxToVw(10);
+        &:nth-child(3) {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+  .content-section {
+    width: pxToVw(1920 - 400);
+    height: 100%;
+    float: left;
+    position: relative;
+    .new-button {
+      width: pxToVw(450);
+      height: pxToVw(100);
+      border-radius: pxToVw(10);
+      border: none;
+      font-size: pxToVw(30);
+      background-color: #d9d9d9;
+      @include middle-position();
+      &:hover {
+        background-color: darken($color: #d9d9d9, $amount: 10);
+      }
+    }
+    .input-title {
+      box-sizing: border-box;
+      height: pxToVw(80);
+      width: calc(100% - 10.41666666666667vw);
+      padding: pxToVw(35) pxToVw(40) pxToVw(10) pxToVw(40);
+      font-size: pxToVw(40);
+      border: none;
+      border-bottom: 1px solid rgba($color: black, $alpha: 0.1);
+      &:focus {
+        outline: none;
+      }
+    }
+    .input-textarea {
+      box-sizing: border-box;
+      width: 100%;
+      height: calc(100% - 4.166666666666667vw);
+      border: 0;
+      font-size: pxToVw(30);
+      padding: pxToVw(30);
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}
+.icon-size80 {
+  font-size: pxToVw(80);
+  transition: all 0.3s;
+}
+.list-memo {
+  overflow-y: scroll;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: pxToVw(30);
+  .memo-ele {
+    box-sizing: border-box;
+    border-bottom: 1px dotted darken($color: #d9d9d9, $amount: 20);
+    padding: pxToVw(10);
+    p {
+      font-size: pxToVw(30);
+    }
+  }
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+.cur-pointer {
+  cursor: pointer;
+}
+.create-account {
+  position: absolute;
+  bottom: pxToVw(60);
+  & * {
+    font-size: pxToVw(20);
+  }
+}
+.sizeAction {
+  font-size: pxToVw(50);
+  color: skyblue;
+}
+
+.notifyjs-bootstrap-base * {
+  font-size: $vw30 !important;
+}
